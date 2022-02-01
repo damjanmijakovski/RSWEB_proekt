@@ -1,0 +1,91 @@
+﻿@model FeedbackPortal.ViewModels.FeedbackFilterViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Client") || User.IsInRole("User"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+    <form asp-controller="Feedbacks" asp-action="Index" method="get">
+        <p>
+            <select asp-for="FeedbackType" asp-items="Model.Types">
+                <option value="">All</option>
+            </select>
+            Feedback Title: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedbacks[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedbacks[0].Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedbacks[0].Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedbacks[0].Client)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Feedbacks[0].Product)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Feedbacks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Client"))
+                        {
+                            <a asp-action="FeedbackEditClient" asp-route-id="@item.Id">Edit</a>
+                        }|
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Employee"))
+                        {
+                            <a asp-action="FeedbackEditEmployee" asp-route-id="@item.Id">Edit</a>
+                        }|
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Client"))
+                        {
+                            <a asp-action="ClientViewFeedback" asp-route-id="@item.Id">Details</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        }|
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
