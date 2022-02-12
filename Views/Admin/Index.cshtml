@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Report.Areas.Identity.Data.ReportUser>
+﻿@model IEnumerable<FeedbackPortal.Areas.Identity.Data.FeedbackPortalUser>
 
 <h1> All Users </h1>
 <div class="form-group">
@@ -15,7 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Report.Areas.Identity.Data.ReportUser user in Model)
+        @foreach (FeedbackPortal.Areas.Identity.Data.FeedbackPortalUser user in Model)
         {
             <tr>
                 <td>@user.Id</td>

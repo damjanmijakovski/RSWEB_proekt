@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Report.Models;
-using Report.ViewModels;
+using FeedbackPortal.Models;
+using FeedbackPortal.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Report.Controllers
+namespace FeedbackPortal.Controllers
 {
     public class ClientsController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using System;
-using Report.Areas.Identity.Data;
-using Report.Models;
+using FeedbackPortal.Areas.Identity.Data;
+using FeedbackPortal.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly: HostingStartup(typeof(Report.Areas.Identity.IdentityHostingStartup))]
-namespace Report.Areas.Identity
+[assembly: HostingStartup(typeof(FeedbackPortal.Areas.Identity.IdentityHostingStartup))]
+namespace FeedbackPortal.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

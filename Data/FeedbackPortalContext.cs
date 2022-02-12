@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Report.Models;
-using Report.Areas.Identity.Data;
+using FeedbackPortal.Models;
+using FeedbackPortal.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Report.Models
+namespace FeedbackPortal.Models
 {
-    public class FeedbackPortalContext : IdentityDbContext<ReportUser>
+    public class FeedbackPortalContext : IdentityDbContext<FeedbackPortalUser>
     {
         public FeedbackPortalContext(DbContextOptions<FeedbackPortalContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Report.Models.Product> Product { get; set; }
+        public DbSet<FeedbackPortal.Models.Product> Product { get; set; }
 
-        public DbSet<Report.Models.Client> Client { get; set; }
+        public DbSet<FeedbackPortal.Models.Client> Client { get; set; }
 
-        public DbSet<Report.Models.Employee> Employee { get; set; }
+        public DbSet<FeedbackPortal.Models.Employee> Employee { get; set; }
 
-        public DbSet<Report.Models.Feedback> Feedback { get; set; }
+        public DbSet<FeedbackPortal.Models.Feedback> Feedback { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

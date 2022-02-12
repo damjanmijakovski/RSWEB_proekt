@@ -1,6 +1,6 @@
 using System;
 
-namespace Report.Models
+namespace FeedbackPortal.Models
 {
     public class ErrorViewModel
     {

@@ -1,5 +1,5 @@
-﻿using Report.Areas.Identity.Data;
-using Report.Models;
+﻿using FeedbackPortal.Areas.Identity.Data;
+using FeedbackPortal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Report.Controllers
+namespace FeedbackPortal.Controllers
 {
     public class AdminController : Controller
     {
-        private UserManager<ReportUser> userManager;
+        private UserManager<FeedbackPortalUser> userManager;
         private RoleManager<IdentityRole> roleManager;
         private readonly FeedbackPortalContext _context;
-        private IPasswordHasher<ReportUser> passwordHasher;
-        public AdminController(UserManager<ReportUser> usrMgr, FeedbackPortalContext context, RoleManager<IdentityRole> roleMgr, IPasswordHasher<ReportUser> passwordHash)
+        private IPasswordHasher<FeedbackPortalUser> passwordHasher;
+        public AdminController(UserManager<FeedbackPortalUser> usrMgr, FeedbackPortalContext context, RoleManager<IdentityRole> roleMgr, IPasswordHasher<FeedbackPortalUser> passwordHash)
         {
             userManager = usrMgr;
             _context = context;
@@ -48,7 +48,7 @@ namespace Report.Controllers
 
                 ViewData["Employees"] = new SelectList(_context.Set<Employee>(), "Id", "Name", user.EmployeeId);
                 ViewData["Clients"] = new SelectList(_context.Set<Client>(), "Id", "Name", user.ClientId);
-                ReportUser appUser = new ReportUser
+                FeedbackPortalUser appUser = new FeedbackPortalUser
                 {
                     UserName = user.UserName,
                     Email = user.Email,
@@ -84,7 +84,7 @@ namespace Report.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(string id)
         {
-            ReportUser user = await userManager.FindByIdAsync(id);
+            FeedbackPortalUser user = await userManager.FindByIdAsync(id);
             if (user != null)
                 return View(user);
             else
@@ -95,7 +95,7 @@ namespace Report.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(string id, string email, string password)
         {
-            ReportUser user = await userManager.FindByIdAsync(id);
+            FeedbackPortalUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
                 if (!string.IsNullOrEmpty(email))
@@ -126,7 +126,7 @@ namespace Report.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
-            ReportUser user = await userManager.FindByIdAsync(id);
+            FeedbackPortalUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
                 IList<String> list = await userManager.GetRolesAsync(user);

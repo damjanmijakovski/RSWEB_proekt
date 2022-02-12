@@ -9,12 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Report.Models;
+using FeedbackPortal.Models;
 using Microsoft.AspNetCore.Http;
-using Report.Areas.Identity.Data;
+using FeedbackPortal.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 
-namespace Report
+namespace FeedbackPortal
 {
     public class Startup
     {
@@ -40,7 +40,7 @@ namespace Report
             services.AddDbContext<FeedbackPortalContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("FeedbackPortalContext")));
 
-            services.AddIdentity<ReportUser, IdentityRole>().AddEntityFrameworkStores<FeedbackPortalContext>().AddDefaultTokenProviders();
+            services.AddIdentity<FeedbackPortalUser, IdentityRole>().AddEntityFrameworkStores<FeedbackPortalContext>().AddDefaultTokenProviders();
 
             services.AddMvc().AddRazorPagesOptions(options =>
             {

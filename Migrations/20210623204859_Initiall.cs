@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Report.Migrations
+namespace FeedbackPortal.Migrations
 {
     public partial class Initiall : Migration
     {

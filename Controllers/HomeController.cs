@@ -1,5 +1,5 @@
-﻿using Report.Areas.Identity.Data;
-using Report.Models;
+﻿using FeedbackPortal.Areas.Identity.Data;
+using FeedbackPortal.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,15 +9,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Report.Controllers
+namespace FeedbackPortal.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly FeedbackPortalContext _context;
-        private readonly UserManager<ReportUser> userManager;
+        private readonly UserManager<FeedbackPortalUser> userManager;
 
-        public HomeController(ILogger<HomeController> logger, FeedbackPortalContext context, UserManager<ReportUser> usrMgr)
+        public HomeController(ILogger<HomeController> logger, FeedbackPortalContext context, UserManager<FeedbackPortalUser> usrMgr)
         {
             _logger = logger;
             _context = context;
@@ -34,13 +34,13 @@ namespace Report.Controllers
             {
                 //Get TeacherId
                 var userID = userManager.GetUserId(User);
-                ReportUser user = await userManager.FindByIdAsync(userID);
+                FeedbackPortalUser user = await userManager.FindByIdAsync(userID);
                 return RedirectToAction("Index", "Products", new { id = user.EmployeeId });
             }
             else if (User.IsInRole("Client"))
             {
                 var userID = userManager.GetUserId(User);
-                ReportUser user = await userManager.FindByIdAsync(userID);
+                FeedbackPortalUser user = await userManager.FindByIdAsync(userID);
                 return RedirectToAction("Index", "Products", new { id = user.ClientId });
             }
             return View();

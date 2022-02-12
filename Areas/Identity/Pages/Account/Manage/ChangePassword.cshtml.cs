@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Report.Areas.Identity.Data;
+using FeedbackPortal.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-namespace Report.Areas.Identity.Pages.Account.Manage
+namespace FeedbackPortal.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<ReportUser> _userManager;
-        private readonly SignInManager<ReportUser> _signInManager;
+        private readonly UserManager<FeedbackPortalUser> _userManager;
+        private readonly SignInManager<FeedbackPortalUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<ReportUser> userManager,
-            SignInManager<ReportUser> signInManager,
+            UserManager<FeedbackPortalUser> userManager,
+            SignInManager<FeedbackPortalUser> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;
